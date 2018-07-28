@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/bookList"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:text="책 리스트.."/>
+
+    <TextView
+        android:id="@+id/book_search_btn"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:layout_centerInParent="true"
+        android:text="책 추가"
+        android:onClick="startBookSearchActivity"
+        android:background="#000000"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/bookList"/>
+
+</android.support.constraint.ConstraintLayout>
