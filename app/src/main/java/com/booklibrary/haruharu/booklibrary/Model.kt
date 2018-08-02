@@ -67,7 +67,9 @@ object Model {
             var price:Int,
             var discount:Int,
             var publisher:String,
-            var description:String
+            var description:String,
+            var numOfPage:Int = 0,
+            var readedPage:Int = 0
     )
     data class NaverResponse(
         var total:Int,

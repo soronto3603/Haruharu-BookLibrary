@@ -38,7 +38,11 @@ class BookSearchActivity : AppCompatActivity() {
         viewManager = LinearLayoutManager(this)
         // 뷰 어댑처 추가
         viewAdapter = mRecyclerViewAdapter(myDataset)
-        viewAdapter.onClick = {  }
+        viewAdapter.onClick = {
+            var intent=Intent(this,BookAddActivity::class.java)
+            startActivityForResult(intent,1)
+
+        }
 
 
         recyclerView = findViewById<RecyclerView>(R.id.book_search_recyclerview).apply {
@@ -55,6 +59,15 @@ class BookSearchActivity : AppCompatActivity() {
         }
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(resultCode==1){
+            Log.d("ResponseCode","1")
+            finish()
+        }else{
+            Log.d("ResponseCode","99")
+        }
+    }
     fun searchBookToNaver(v:View){
         val rtf = Retrofit.Builder()
                 .baseUrl("https://openapi.naver.com/")
@@ -90,7 +103,7 @@ class BookSearchActivity : AppCompatActivity() {
 
 //    add & clear test function
     fun addDataTest(v:View){
-        myDataset.add(Model.BookItem("Kotling 짱 어렵","링크","이미지","작가",1,1,"한빛","설명"))
+        myDataset.add(Model.BookItem("Kotling 짱 어렵","링크","이미지","작가",1,1,"한빛","설명",0,0))
         viewAdapter.notifyDataSetChanged()
     }
     fun addData(item:Model.BookItem){
@@ -136,8 +149,8 @@ class mRecyclerViewAdapter(var myDataset: ArrayList<Model.BookItem>) :
             Log.d("SelectedBookItem",view.search_book_recyclerview_item_title.text.toString())
 
             var book_item=Model.BookItem(view.search_book_recyclerview_item_title.text.toString()
-                    ,"","",view.search_book_recyclerview_item_author.text.toString(),
-                    view.search_book_recyclerview_item_price.text.toString().toInt(),-1,"","")
+                    ,"",view.search_book_recyclerview_item_image_tag.text.toString(),view.search_book_recyclerview_item_author.text.toString(),
+                    view.search_book_recyclerview_item_price.text.toString().toInt(),-1,"","",0,0)
 
             var current_book_item=DataManager.instance
             current_book_item.selected_book_item=book_item
@@ -153,6 +166,7 @@ class mRecyclerViewAdapter(var myDataset: ArrayList<Model.BookItem>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
+        holder.mViewItem.search_book_recyclerview_item_image_tag.text=myDataset[position].image
         holder.mViewItem.search_book_recyclerview_item_title.text = myDataset[position].title
         holder.mViewItem.search_book_recyclerview_item_author.text = myDataset[position].author
         holder.mViewItem.search_book_recyclerview_item_price.text= myDataset[position].price.toString()

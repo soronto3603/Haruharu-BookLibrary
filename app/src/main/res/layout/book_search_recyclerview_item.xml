@@ -13,6 +13,11 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"/>
     <TextView
+        android:id="@+id/search_book_recyclerview_item_image_tag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/search_book_recyclerview_item_image_tag"/>
+    <TextView
         android:id="@+id/search_book_recyclerview_item_title"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
