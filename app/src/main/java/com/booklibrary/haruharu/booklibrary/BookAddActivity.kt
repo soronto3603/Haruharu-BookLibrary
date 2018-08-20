@@ -40,8 +40,8 @@ class BookAddActivity : AppCompatActivity() {
     }
 
     fun insertBook(v: View){
-        var current_book_item=DataManager.instance
-        var cb=current_book_item.selected_book_item
+        var current_book_item = DataManager.instance
+        var cb = current_book_item.selected_book_item
 
         val db=dbHelper.writableDatabase
         val values= ContentValues().apply{
@@ -56,12 +56,14 @@ class BookAddActivity : AppCompatActivity() {
             put("numOfPage",0)
             put("readedPage",0)
         }
-        Log.d("INSERT_BOOK","INSERT BOOK FINISIH : "+cb.title+cb.link+cb.image+cb.author+cb.price+cb.discount+cb.publisher+cb.description)
-        val newRowId=db?.insert("MyBook",null,values)
+        Log.d("INSERT_BOOK","INSERT BOOK FINISIH : " + cb.title + cb.link+cb.image+cb.author+cb.price+cb.discount+cb.publisher+cb.description)
+
+        db.insert("MyBook",null, values)
 
         setResult(1)
         finish()
     }
+
     fun selectBook(v:View){
         val db=dbHelper.readableDatabase
         val cursor=db.rawQuery("SELECT * FROM MyBook",null)

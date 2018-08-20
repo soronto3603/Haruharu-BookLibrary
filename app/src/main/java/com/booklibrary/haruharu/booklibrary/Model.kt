@@ -60,6 +60,7 @@ object Model {
         constructor(query:String) : this(query=query,display="",start="",sort="",d_titl="",d_auth="",d_catg = "")
     }
     data class BookItem(
+            var no:Int=-1,
             var title:String,
             var link:String,
             var image:String,

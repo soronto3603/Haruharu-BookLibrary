@@ -29,7 +29,7 @@ public class DataManager private constructor() {
     companion object {
         val instance: DataManager by lazy { Holder.INSTANCE }
     }
-    var selected_book_item=Model.BookItem("","","","",-1,-1,"","")
+    var selected_book_item=Model.BookItem(-1,"","","","",-1,-1,"","")
 }
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {

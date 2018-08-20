@@ -63,6 +63,8 @@ class BookSearchActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if(resultCode==1){
             Log.d("ResponseCode","1")
+            //MyLib Fragment 데이터 리셋
+            setResult(3)
             finish()
         }else{
             Log.d("ResponseCode","99")
@@ -103,8 +105,6 @@ class BookSearchActivity : AppCompatActivity() {
 
 //    add & clear test function
     fun addDataTest(v:View){
-        myDataset.add(Model.BookItem("Kotling 짱 어렵","링크","이미지","작가",1,1,"한빛","설명",0,0))
-        viewAdapter.notifyDataSetChanged()
     }
     fun addData(item:Model.BookItem){
         myDataset.add(item)
@@ -148,7 +148,7 @@ class mRecyclerViewAdapter(var myDataset: ArrayList<Model.BookItem>) :
         mViewItem.setOnClickListener { view ->
             Log.d("SelectedBookItem",view.search_book_recyclerview_item_title.text.toString())
 
-            var book_item=Model.BookItem(view.search_book_recyclerview_item_title.text.toString()
+            var book_item=Model.BookItem(-1,view.search_book_recyclerview_item_title.text.toString()
                     ,"",view.search_book_recyclerview_item_image_tag.text.toString(),view.search_book_recyclerview_item_author.text.toString(),
                     view.search_book_recyclerview_item_price.text.toString().toInt(),-1,"","",0,0)
 

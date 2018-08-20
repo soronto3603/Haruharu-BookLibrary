@@ -9,7 +9,7 @@ class BookDB : SQLiteOpenHelper {
     private val DB_VERSION=1
     private val DB_NAME="MyBook"
 
-    constructor(context:Context) : super(context,"MyBook",null,1) {}
+    constructor(context:Context?) : super(context,"MyBook",null,1) {}
 
 
     override fun onCreate(p0: SQLiteDatabase?) {
